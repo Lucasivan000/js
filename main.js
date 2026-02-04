@@ -18,6 +18,15 @@ boton.addEventListener("click", function() {
 
 });
     
+// calculos // 
+
+
+
+
+
+
+
+
 
 
 
