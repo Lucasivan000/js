@@ -4,53 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguros Fulano</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
     <header>
-        
+        <h1>SIMLUADOR DE COSTOS DE SEGURO</h1>
+        <p>Completa los datos para calcular el costo del seguro</p>
     </header>
     <main>
-        <section class="formularioContacto">
-            <form action="/submit" method="post">
-                <div class="tituloFormulario">
-                    <h1>Completa tus datos</h1>
-                </div>
-                <div class="datosFormulario">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="Nombre" id="nombre">
-                    <label for="email">Correo Electronico</label>
-                    <input type="email" name="email" id="email">
-                    <label for="tipodeseguro"></label>
-                    <select name="tipodeseguro" id="tipodeseguro">
-                        <option value="art">ART</option>
-                        <option value="vivienda">VIVIENDA</option>
-                        <option value="automotor">AUTOMOTOR</option>
-                        <option value="vida">VIDA</option>
-                        <option value="cauciones">CAUCIONES</option>
-                    </select>
-                    <label for="telefono">Tel de contacto</label>
-                    <input type="tel" name="telefono" id="telefono">
-                    <label for="comentario">Comentario</label>
-                    <textarea name="comentario" id="comentario"></textarea>
+        <section class="cargaDeDatos">
+            <label for="nombreApellido">Nombre y apellido</label>
+            <input type="text" id="nombreApellido">
 
-                    <label for="enviarinfo">Quiero que se envie informacion al correo electronico</label>
-                    <input type="radio" name="enviarinfo" id="enviarinfo">
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono">
 
-                    <input type="submit" value="Enviar">
-                </div>
+            <label for="tipoDeSeguro">Seguro</label>
+            <select name="tipoDeSeguro" id="tipoDeSeguro">
+                <option value="">Seleccionar</option>
+                <option value="vivienda">Vivienda</option>
+                <option value="automotor">Automotor</option>
+                <option value="motovehiculo">Motovehiculo</option>
+            </select>
 
 
+            <div id="automotor" class="opciones">
+                <label>Valor</label>
+                <input type="number">
 
-            </form>
+                <label>Año</label>
+                <input type="number">
+            </div>
+            <div id="motovehiculo" class="opciones">
+                <label>Valor</label>
+                <input type="number">
+
+                <label>Año</label>
+                <input type="number">
+            </div>
+            <div id="vivienda" class="opciones">
+                <label>Metros Cuadrados</label>
+                <input type="number">
+            </div>
+
+
+
+
+
+
+
 
         </section>
 
+
+
     </main>
-    
+    <footer>
+
+    </footer>
     <script src="./main.js"></script>
+
+
 </body>
 
 </html>
