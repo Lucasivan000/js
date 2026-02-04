@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguros Fulano</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <header>
+        
+    </header>
+    <main>
+        <section class="formularioContacto">
+            <form action="/submit" method="post">
+                <div class="tituloFormulario">
+                    <h1>Completa tus datos</h1>
+                </div>
+                <div class="datosFormulario">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="Nombre" id="nombre">
+                    <label for="email">Correo Electronico</label>
+                    <input type="email" name="email" id="email">
+                    <label for="tipodeseguro"></label>
+                    <select name="tipodeseguro" id="tipodeseguro">
+                        <option value="art">ART</option>
+                        <option value="vivienda">VIVIENDA</option>
+                        <option value="automotor">AUTOMOTOR</option>
+                        <option value="vida">VIDA</option>
+                        <option value="cauciones">CAUCIONES</option>
+                    </select>
+                    <label for="telefono">Tel de contacto</label>
+                    <input type="tel" name="telefono" id="telefono">
+                    <label for="comentario">Comentario</label>
+                    <textarea name="comentario" id="comentario"></textarea>
+
+                    <label for="enviarinfo">Quiero que se envie informacion al correo electronico</label>
+                    <input type="radio" name="enviarinfo" id="enviarinfo">
+
+                    <input type="submit" value="Enviar">
+                </div>
+
+
+
+            </form>
+
+        </section>
+
+    </main>
+    
+    <script src="./main.js"></script>
+</body>
+
+</html>
