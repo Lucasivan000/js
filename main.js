@@ -69,6 +69,13 @@ boton.addEventListener("click", function() {
             resultado = cuota * precioMoto;
         }
     }
+    if (tipoSeleccionado === "vivienda") {
+        let cantidadMetros = metrosViv.value;
+        let cantMetrosViv = Number(cantidadMetros);
+
+        let cuota = 0.02;
+        resultado = cantMetrosViv * cuota;
+    }
         
 });
     
