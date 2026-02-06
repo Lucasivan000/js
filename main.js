@@ -6,7 +6,18 @@ const divisiones = document.querySelectorAll(".opciones");
 
 let boton = document.getElementById("boton");
 
+//automotor
+const valorAuto = document.getElementById("valorAutomotor");
+const anioAuto = document.getElementById("anioAutomotor");
+const valorMoto = document.getElementById("valorMotovehiculo");
+const anioMoto = document.getElementById("anioMotovehiculo");
+const metrosViv = document.getElementById("metrosVivienda");
+
+
+
 boton.addEventListener("click", function() {
+    let resultado= null;
+    let mensaje ="";
     const tipoSeleccionado = tipoDeSeguro.value;
     divisiones.forEach(division => {
     division.style.display = "none";
@@ -17,25 +28,53 @@ boton.addEventListener("click", function() {
 
 
     };
+    //automotor calculo //
+    if(tipoSeleccionado === "automotor") {
+        let precioAutoText = valorAuto.value;
+        let precioAuto = Number(precioAutoText);
         
+        let anioAutoText = anioAuto.value;
+        let anioModeloAuto = Number(anioAutoText);
+        let cuota;
 
+        if (anioModeloAuto >= 2016 && anioModeloAuto <= 2026) {
+            cuota = 0.05;
+        } else if (anioModeloAuto <= 2015 && anioModeloAuto >= 2000 ) {
+            cuota = 0.07;
+        } else {
+            mensaje = "No asegurable por el Año Modelo";
+        }
+        if (cuota !== undefined) {
+            resultado = cuota * precioAuto;
+        }
+
+    };
+    // motovehiculo calculo //
+    if (tipoSeleccionado === "motovehiculo") {
+        let precioMotoText = valorMoto.value;
+        let precioMoto = Number(precioMotoText);
+
+        let anioMotoText = anioMoto.value;
+        let anioModeloMoto = Number(anioMotoText);
+        let cuota;
+
+        if (anioModeloMoto >= 2016 && anioModeloMoto <= 2026) {
+            cuota = 0.07;
+        } else if (anioModeloMoto <= 2015 && anioModeloMoto >= 2006){
+            cuota = 0.09;
+        } else {
+            mensaje = "No asegurable por el Año Modelo";
+        }
+        if (cuota !== undefined){
+            resultado = cuota * precioMoto;
+        }
+    }
+        
 });
     
-// calculos // 
-//automotor //
-let resultadoA = document.getElementById("cotizarA");
 
-resultadoA.addEventListener("click", function() {
-    const valorA = document.getElementById("valorAutomotor");
-    const anioA = document.getElementById("anioAutomotor");
-    let cuota;
-      if (anioA.value <= 2026 && anioA.value >= 2016) {
-        cuota = 0.02;
-    } else if (anioA.value < 2016 && anioA.value >= 2006) {
-        cuota = 0.03;
-    } else {
-        alert("No asegurable por el año del vehículo");
-}});
+
+
 
 
 
