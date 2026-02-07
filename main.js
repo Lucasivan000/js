@@ -1,15 +1,19 @@
 console.log(document);
 console.dir(document);
 
+//datosusuario
+const nombre = document.getElementById("nombreApellido");
+let nombreUsuario = nombreApellido.value;
+console.log(nombreUsuario)
 const tipoDeSeguro = document.getElementById("tipoDeSeguro");
 const divisiones = document.querySelectorAll(".opciones");
-
+//botones //
 let boton = document.getElementById("boton");
 let botonA = document.getElementById("cotizarA");
 let botonM = document.getElementById("cotizarM");
 let botonV = document.getElementById("cotizarV");
 
-
+//valores para calcular//
 const valorAuto = document.getElementById("valorAutomotor");
 const anioAuto = document.getElementById("anioAutomotor");
 const valorMoto = document.getElementById("valorMotovehiculo");
@@ -19,7 +23,7 @@ const metrosViv = document.getElementById("metrosVivienda");
 
 const resultadoCalculo = document.getElementById("calculoFinal");
 
-//boton
+//boton de CONFIRMAR DATOS
 boton.addEventListener("click", function() {
     const tipoSeleccionado = tipoDeSeguro.value;
 
@@ -34,7 +38,7 @@ boton.addEventListener("click", function() {
     }
 });
 
-//automotor
+//automotor BOTON COTIZAR
 botonA.addEventListener("click", function() {
     const tipoSeleccionado = tipoDeSeguro.value;
     if(tipoSeleccionado === "automotor") {
@@ -51,7 +55,7 @@ botonA.addEventListener("click", function() {
             mensaje = "No asegurable por el Año Modelo";
         }
 
-        let resultado = null; // dejamos la “caja vacía” primero
+        let resultado = null; 
 
             if (cuota !== undefined) {
             resultado = cuota * precioAuto;
@@ -60,14 +64,14 @@ botonA.addEventListener("click", function() {
 
         
         if(resultado !== null) {
-            resultadoCalculo.textContent = "El valor estimado es de $" + resultado;
+            resultadoCalculo.textContent = "El valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
         }
     }
 });
 
-//moto
+//moto BOTON COTIZAR
 botonM.addEventListener("click", function() {
     const tipoSeleccionado = tipoDeSeguro.value;
     if(tipoSeleccionado === "motovehiculo") {
@@ -91,19 +95,19 @@ botonM.addEventListener("click", function() {
 }
 
         if(resultado !== null) {
-            resultadoCalculo.textContent = "El valor estimado es de $" + resultado;
+            resultadoCalculo.textContent = "El valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
         }
     }
 });
 
-// vivienda
+// vivienda BOTON COTIZAR
 botonV.addEventListener("click", function() {
     const tipoSeleccionado = tipoDeSeguro.value;
     if(tipoSeleccionado === "vivienda") {
         let cantMetrosViv = Number(metrosViv.value);
-        let cuota = 0.02;
+        let cuota = 500;
         let resultado = cantMetrosViv * cuota;
 
         resultadoCalculo.textContent = "El valor menusal estimado es de $" + resultado;
