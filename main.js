@@ -65,6 +65,18 @@ botonA.addEventListener("click", function() {
         if(resultado !== null) {
             const nombre = document.getElementById("nombreApellido");
             let nombreUsuario = nombre.value;
+            const telefono = document.getElementById("telefono");
+            const telefonoUsuario = telefono.value;
+            const datos = {
+                nombre: nombreUsuario,
+                telefono: telefonoUsuario,
+                valorVehiculo: precioAuto,
+                anio: anioModeloAuto,
+                cuota: resultado
+            }
+            guardarDatos(datos);
+
+
             resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
@@ -96,8 +108,21 @@ botonM.addEventListener("click", function() {
 }
 
         if(resultado !== null) {
+
             const nombre = document.getElementById("nombreApellido");
-            let nombreUsuario = nombre.value;
+            const nombreUsuario = nombre.value;
+            const telefono = document.getElementById("telefono");
+            const telefonoUsuario = telefono.value;
+            const datos = {
+                nombre: nombreUsuario,
+                telefono: telefonoUsuario,
+                valorVehiculo: precioMoto,
+                anio: anioModeloMoto,
+                cuota: resultado
+            }
+            guardarDatos(datos);
+
+
             resultadoCalculo.textContent = "Hola " +nombreUsuario +" el valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
@@ -112,15 +137,37 @@ botonV.addEventListener("click", function() {
         let cantMetrosViv = Number(metrosViv.value);
         let cuota = 500;
         let resultado = cantMetrosViv * cuota;
-        
+
+        //datos usuario
+        const telefono = document.getElementById("telefono");
+        const telefonoUsuario = telefono.value;
         const nombre = document.getElementById("nombreApellido");
-            let nombreUsuario = nombre.value;
+        const nombreUsuario = nombre.value;
+        
+        const datos = {
+            nombre: nombreUsuario,
+            telefono: telefonoUsuario,
+            tipo: tipoSeleccionado,
+            monto: resultado,
+            metros: cantMetrosViv
+
+        }
+        guardarDatos(datos);
 
         resultadoCalculo.textContent = "Hola " +nombreUsuario +" El valor menusal estimado es de $" + resultado;
     }
 });
 
-    
+
+
+// funcion datosusuario ----//
+function guardarDatos(datos) {
+    localStorage.setItem("pidioCotizacion", JSON.stringify(datos));
+}
+
+
+
+
 
 
 
