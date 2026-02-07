@@ -1,10 +1,9 @@
 console.log(document);
 console.dir(document);
 
-//datosusuario
-const nombre = document.getElementById("nombreApellido");
-let nombreUsuario = nombreApellido.value;
-console.log(nombreUsuario)
+
+
+// ------------------------- //
 const tipoDeSeguro = document.getElementById("tipoDeSeguro");
 const divisiones = document.querySelectorAll(".opciones");
 //botones //
@@ -64,7 +63,9 @@ botonA.addEventListener("click", function() {
 
         
         if(resultado !== null) {
-            resultadoCalculo.textContent = "El valor mensual estimado es de $" + resultado;
+            const nombre = document.getElementById("nombreApellido");
+            let nombreUsuario = nombre.value;
+            resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
         }
@@ -81,9 +82,9 @@ botonM.addEventListener("click", function() {
         let mensaje = "";
 
         if (anioModeloMoto >= 2016 && anioModeloMoto <= 2026) {
-            cuota = 0.05;
+            cuota = 0.03;
         } else if (anioModeloMoto <= 2015 && anioModeloMoto >= 2006){
-            cuota = 0.06;
+            cuota = 0.02;
         } else {
             mensaje = "No asegurable por el Año Modelo";
         }
@@ -95,7 +96,9 @@ botonM.addEventListener("click", function() {
 }
 
         if(resultado !== null) {
-            resultadoCalculo.textContent = "El valor mensual estimado es de $" + resultado;
+            const nombre = document.getElementById("nombreApellido");
+            let nombreUsuario = nombre.value;
+            resultadoCalculo.textContent = "Hola " +nombreUsuario +" el valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
         }
@@ -109,8 +112,11 @@ botonV.addEventListener("click", function() {
         let cantMetrosViv = Number(metrosViv.value);
         let cuota = 500;
         let resultado = cantMetrosViv * cuota;
+        
+        const nombre = document.getElementById("nombreApellido");
+            let nombreUsuario = nombre.value;
 
-        resultadoCalculo.textContent = "El valor menusal estimado es de $" + resultado;
+        resultadoCalculo.textContent = "Hola " +nombreUsuario +" El valor menusal estimado es de $" + resultado;
     }
 });
 
