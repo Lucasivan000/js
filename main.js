@@ -43,6 +43,10 @@ botonA.addEventListener("click", function() {
     if(tipoSeleccionado === "automotor") {
         let precioAuto = Number(valorAuto.value);
         let anioModeloAuto = Number(anioAuto.value);
+        if (precioAuto <= 0 || anioModeloAuto <= 0) {
+            resultadoCalculo.textContent = "Completá todos los datos";
+            return;
+        }
         let cuota;
         let mensaje = "";
 
@@ -90,6 +94,11 @@ botonM.addEventListener("click", function() {
     if(tipoSeleccionado === "motovehiculo") {
         let precioMoto = Number(valorMoto.value);
         let anioModeloMoto = Number(anioMoto.value);
+        if (precioMoto <= 0 || anioModeloMoto <= 0) {
+            resultadoCalculo.textContent = "Completá todos los datos";
+            return;
+        }
+
         let cuota;
         let mensaje = "";
 
@@ -99,6 +108,7 @@ botonM.addEventListener("click", function() {
             cuota = 0.02;
         } else {
             mensaje = "No asegurable por el Año Modelo";
+            return
         }
 
         let resultado = null; 
@@ -135,6 +145,10 @@ botonV.addEventListener("click", function() {
     const tipoSeleccionado = tipoDeSeguro.value;
     if(tipoSeleccionado === "vivienda") {
         let cantMetrosViv = Number(metrosViv.value);
+        if (cantMetrosViv <= 0) {
+            resultadoCalculo.textContent = "Completá todos los datos";
+            return;
+        }
         let cuota = 500;
         let resultado = cantMetrosViv * cuota;
 
@@ -153,6 +167,7 @@ botonV.addEventListener("click", function() {
 
         }
         guardarDatos(datos);
+        console.log(datos);
 
         resultadoCalculo.textContent = "Hola " +nombreUsuario +" El valor menusal estimado es de $" + resultado;
     }
@@ -162,10 +177,17 @@ botonV.addEventListener("click", function() {
 
 // funcion datosusuario ----//
 function guardarDatos(datos) {
-    localStorage.setItem("pidioCotizacion", JSON.stringify(datos));
+    let cotizaciones;
+
+    if (localStorage.getItem("pidioCotizacion") === null) {
+        cotizaciones = [];
+    } else {
+        cotizaciones = JSON.parse(localStorage.getItem("pidioCotizacion"));
+    }
+
+    cotizaciones.push(datos);
+    localStorage.setItem("pidioCotizacion", JSON.stringify(cotizaciones));
 }
-
-
 
 
 
