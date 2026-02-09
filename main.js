@@ -34,7 +34,7 @@ boton.addEventListener("click", function() {
 
     
     if (tipoSeleccionado) {
-        document.getElementById(tipoSeleccionado).style.display = "block";
+        document.getElementById(tipoSeleccionado).style.display = "flex";
     }
 });
 
