@@ -1,32 +1,144 @@
-.opciones {
-    display: none;
+
+/*-*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+  /*-----*/
 .container {
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 200px auto 200px;
-    background-color: blanchedalmond;
+    min-height: 100vh;
+    background-color: #1e3a8a; /* azul */
+    display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+
+
+main {
+    background-color: #bfdbfe; 
+    width: 500px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/*header*/
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .titulo {
-    
-    font-size: 50px;
-    color:blue;
-    
-    
-
+    font-size: 36px;
+    color: #1e3a8a;
+    margin-bottom: 10px;
 }
 
 .instruccion {
-    font-size: 30px;
-    padding: 20px;
-    margin: 15px;
-    text-align: center;
+    font-size: 16px;
+    color: #1e40af;
 }
+
+/*estimador */
 
 .cargaDeDatos {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+input,
+select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #1e3a8a;
+    font-size: 14px;
+}
+
+/*botones*/
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #1e40af;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/*menu oculo*/
+
+.opciones {
+    display: none; 
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #e0f2fe;
+    border-radius: 8px;
+}
+
+/*mensaje*/
+
+#calculoFinal {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #dbeafe;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #1e3a8a;
+    text-align: center;
+}
+
+/*boton de mail*/
+
+.contacto {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.estiloBotonEmail {
+    background-color: #0ea5e9;
+}
+
+.estiloBotonEmail:hover {
+    background-color: #0284c7;
+}
+
+/*celular*/
+
+@media (max-width: 600px) {
+
+    main {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .titulo {
+        font-size: 26px;
+    }
+
+    .instruccion {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 8px;
+    }
 }

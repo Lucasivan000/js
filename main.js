@@ -21,6 +21,7 @@ const metrosViv = document.getElementById("metrosVivienda");
 
 
 const resultadoCalculo = document.getElementById("calculoFinal");
+const botonDeContacto = document.getElementById("botonEmail");
 
 //boton de CONFIRMAR DATOS
 boton.addEventListener("click", function() {
@@ -55,7 +56,7 @@ botonA.addEventListener("click", function() {
         } else if (anioModeloAuto <= 2015 && anioModeloAuto >= 2000 ) {
             cuota = 0.04;
         } else {
-            mensaje = "No asegurable por el Año Modelo";
+            mensaje = "No asegurable por el Año Modelo || Modelo Año Inexistente";
         }
 
         let resultado = null; 
@@ -107,7 +108,7 @@ botonM.addEventListener("click", function() {
         } else if (anioModeloMoto <= 2015 && anioModeloMoto >= 2006){
             cuota = 0.02;
         } else {
-            mensaje = "No asegurable por el Año Modelo";
+            mensaje = "No asegurable por el Año Modelo || Modelo Año inexistente";
             return
         }
 
@@ -167,7 +168,7 @@ botonV.addEventListener("click", function() {
 
         }
         guardarDatos(datos);
-        console.log(datos);
+        
 
         resultadoCalculo.textContent = "Hola " +nombreUsuario +" El valor menusal estimado es de $" + resultado;
     }
@@ -190,6 +191,19 @@ function guardarDatos(datos) {
 }
 
 
+// Boton de contacto por email
+
+botonEmail.addEventListener("click", function(){
+    let email = "seguroquenose@seguros.com";
+    let asunto = "presupuesto";
+    let mensajeEmail = " Hola, quiero informacion";
+    
+
+    window.location.href =
+        "mailto:" + email +
+        "?subject=" + asunto +
+        "&body=" + mensajeEmail;
+});
 
 
 
