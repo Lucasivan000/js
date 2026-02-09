@@ -22,26 +22,62 @@ const metrosViv = document.getElementById("metrosVivienda");
 
 const resultadoCalculo = document.getElementById("calculoFinal");
 const botonDeContacto = document.getElementById("botonEmail");
+// validar nunmero y texto
+const nombreUsuario = document.getElementById("nombreApellido");
+const telefonoUsuario = document.getElementById("telefono");
+
+nombreUsuario.addEventListener("input", function(){
+    let nombrePorValidar = nombreUsuario.value;
+    let nombreValidado = "";
+
+    for(let i =0; i < nombrePorValidar.length; i++){
+        let letra = nombrePorValidar[i];
+
+        if(
+            (letra <= "z" && letra >= "a") || (letra <= "Z" && letra >= "A") || letra === "" ) {
+                nombreValidado = nombreValidado + letra;
+            }
+        
+    }    
+
+    nombreUsuario.value = nombreValidado
+
+});
+
+telefonoUsuario.addEventListener("input", function(){
+    let telefonoPorValidar = telefonoUsuario.value;
+    let telefonoValidado = "";
+
+    for(let i = 0; i < telefonoPorValidar.length ; i++){
+        let numerito = telefonoPorValidar[i];
+
+        if((numerito >= "0" && numerito <= "9")){
+            telefonoValidado = telefonoValidado + numerito;   
+        }
+    }
+    telefonoUsuario.value = telefonoValidado
+
+});
 
 //boton de CONFIRMAR DATOS
-boton.addEventListener("click", function() {
+boton.addEventListener("click", function () {
     const tipoSeleccionado = tipoDeSeguro.value;
 
-    
+
     divisiones.forEach(division => {
         division.style.display = "none";
     });
 
-    
+
     if (tipoSeleccionado) {
         document.getElementById(tipoSeleccionado).style.display = "flex";
     }
 });
 
 //automotor BOTON COTIZAR
-botonA.addEventListener("click", function() {
+botonA.addEventListener("click", function () {
     const tipoSeleccionado = tipoDeSeguro.value;
-    if(tipoSeleccionado === "automotor") {
+    if (tipoSeleccionado === "automotor") {
         let precioAuto = Number(valorAuto.value);
         let anioModeloAuto = Number(anioAuto.value);
         if (precioAuto <= 0 || anioModeloAuto <= 0) {
@@ -53,21 +89,21 @@ botonA.addEventListener("click", function() {
 
         if (anioModeloAuto >= 2016 && anioModeloAuto <= 2026) {
             cuota = 0.02;
-        } else if (anioModeloAuto <= 2015 && anioModeloAuto >= 2000 ) {
+        } else if (anioModeloAuto <= 2015 && anioModeloAuto >= 2000) {
             cuota = 0.04;
         } else {
             mensaje = "No asegurable por el Año Modelo || Modelo Año Inexistente";
         }
 
-        let resultado = null; 
+        let resultado = null;
 
-            if (cuota !== undefined) {
+        if (cuota !== undefined) {
             resultado = cuota * precioAuto;
-        }    
+        }
 
 
-        
-        if(resultado !== null) {
+
+        if (resultado !== null) {
             const nombre = document.getElementById("nombreApellido");
             let nombreUsuario = nombre.value;
             const telefono = document.getElementById("telefono");
@@ -90,9 +126,9 @@ botonA.addEventListener("click", function() {
 });
 
 //moto BOTON COTIZAR
-botonM.addEventListener("click", function() {
+botonM.addEventListener("click", function () {
     const tipoSeleccionado = tipoDeSeguro.value;
-    if(tipoSeleccionado === "motovehiculo") {
+    if (tipoSeleccionado === "motovehiculo") {
         let precioMoto = Number(valorMoto.value);
         let anioModeloMoto = Number(anioMoto.value);
         if (precioMoto <= 0 || anioModeloMoto <= 0) {
@@ -105,20 +141,20 @@ botonM.addEventListener("click", function() {
 
         if (anioModeloMoto >= 2016 && anioModeloMoto <= 2026) {
             cuota = 0.03;
-        } else if (anioModeloMoto <= 2015 && anioModeloMoto >= 2006){
+        } else if (anioModeloMoto <= 2015 && anioModeloMoto >= 2006) {
             cuota = 0.02;
         } else {
             mensaje = "No asegurable por el Año Modelo || Modelo Año inexistente";
             return
         }
 
-        let resultado = null; 
+        let resultado = null;
 
         if (cuota !== undefined) {
             resultado = cuota * precioMoto;
-}
+        }
 
-        if(resultado !== null) {
+        if (resultado !== null) {
 
             const nombre = document.getElementById("nombreApellido");
             const nombreUsuario = nombre.value;
@@ -134,7 +170,7 @@ botonM.addEventListener("click", function() {
             guardarDatos(datos);
 
 
-            resultadoCalculo.textContent = "Hola " +nombreUsuario +" el valor mensual estimado es de $" + resultado;
+            resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
         } else {
             resultadoCalculo.textContent = mensaje;
         }
@@ -142,9 +178,9 @@ botonM.addEventListener("click", function() {
 });
 
 // vivienda BOTON COTIZAR
-botonV.addEventListener("click", function() {
+botonV.addEventListener("click", function () {
     const tipoSeleccionado = tipoDeSeguro.value;
-    if(tipoSeleccionado === "vivienda") {
+    if (tipoSeleccionado === "vivienda") {
         let cantMetrosViv = Number(metrosViv.value);
         if (cantMetrosViv <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
@@ -158,7 +194,7 @@ botonV.addEventListener("click", function() {
         const telefonoUsuario = telefono.value;
         const nombre = document.getElementById("nombreApellido");
         const nombreUsuario = nombre.value;
-        
+
         const datos = {
             nombre: nombreUsuario,
             telefono: telefonoUsuario,
@@ -168,9 +204,9 @@ botonV.addEventListener("click", function() {
 
         }
         guardarDatos(datos);
-        
 
-        resultadoCalculo.textContent = "Hola " +nombreUsuario +" El valor menusal estimado es de $" + resultado;
+
+        resultadoCalculo.textContent = "Hola " + nombreUsuario + " El valor menusal estimado es de $" + resultado;
     }
 });
 
@@ -193,11 +229,11 @@ function guardarDatos(datos) {
 
 // Boton de contacto por email
 
-botonEmail.addEventListener("click", function(){
+botonEmail.addEventListener("click", function () {
     let email = "seguroquenose@seguros.com";
     let asunto = "presupuesto";
     let mensajeEmail = " Hola, quiero informacion";
-    
+
 
     window.location.href =
         "mailto:" + email +
