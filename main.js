@@ -61,6 +61,15 @@ telefonoUsuario.addEventListener("input", function(){
 
 //boton de CONFIRMAR DATOS
 boton.addEventListener("click", function () {
+    const nombreYApellido = nombreApellido.value;
+    const telefonoEspacio = telefono.value;
+
+    if (nombreYApellido === "" || telefonoEspacio === "") {
+        alert("Completá todos los campos antes de continuar");
+        return; // 🚨 corta TODO antes de mostrar el menú
+    }
+
+
     const tipoSeleccionado = tipoDeSeguro.value;
 
 
