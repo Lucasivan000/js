@@ -123,6 +123,12 @@ button:hover {
     background-color: #0284c7;
 }
 
+/*mensaje error*/
+.errorSeleccion {
+    color: red;
+    text-align: center;
+}
+
 /*celular*/
 
 @media (max-width: 600px) {

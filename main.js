@@ -25,6 +25,8 @@ const botonDeContacto = document.getElementById("botonEmail");
 // validar nunmero y texto
 const nombreUsuario = document.getElementById("nombreApellido");
 const telefonoUsuario = document.getElementById("telefono");
+const errorDeSelecccion = document.getElementById("errorSeleccion");
+
 
 nombreUsuario.addEventListener("input", function(){
     let nombrePorValidar = nombreUsuario.value;
@@ -65,12 +67,21 @@ boton.addEventListener("click", function () {
     const telefonoEspacio = telefono.value;
 
     if (nombreYApellido === "" || telefonoEspacio === "") {
-        alert("Completá todos los campos antes de continuar");
-        return; // 🚨 corta TODO antes de mostrar el menú
+        errorDeSelecccion.textContent = "Debe ingresar sus datos";
+        return; 
     }
+    
 
 
     const tipoSeleccionado = tipoDeSeguro.value;
+    errorDeSelecccion.textContent ="";
+
+
+
+    if (tipoSeleccionado =="seleccionar"){
+        errorDeSelecccion.textContent ="Por favor, selecciona un seguro";
+        return;
+    }
 
 
     divisiones.forEach(division => {
