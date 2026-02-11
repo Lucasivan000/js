@@ -1,6 +1,3 @@
-console.log(document);
-console.dir(document);
-
 
 
 // ------------------------- //
@@ -36,7 +33,7 @@ nombreUsuario.addEventListener("input", function(){
         let letra = nombrePorValidar[i];
 
         if(
-            (letra <= "z" && letra >= "a") || (letra <= "Z" && letra >= "A") || letra === "" ) {
+            (letra <= "z" && letra >= "a") || (letra <= "Z" && letra >= "A") || letra === " " ) {
                 nombreValidado = nombreValidado + letra;
             }
         
@@ -63,10 +60,10 @@ telefonoUsuario.addEventListener("input", function(){
 
 //boton de CONFIRMAR DATOS
 boton.addEventListener("click", function () {
-    const nombreYApellido = nombreApellido.value;
-    const telefonoEspacio = telefono.value;
+    const nombreEspacio = nombreUsuario.value;
+    const telefonoEspacio = telefonoUsuario.value;
 
-    if (nombreYApellido === "" || telefonoEspacio === "") {
+    if (nombreEspacio === "" || telefonoEspacio === "") {
         errorDeSelecccion.textContent = "Debe ingresar sus datos";
         return; 
     }
@@ -125,7 +122,7 @@ botonA.addEventListener("click", function () {
 
         if (resultado !== null) {
             const nombre = document.getElementById("nombreApellido");
-            let nombreUsuario = nombre.value;
+            const nombreUsuario = nombre.value;
             const telefono = document.getElementById("telefono");
             const telefonoUsuario = telefono.value;
             const datos = {
