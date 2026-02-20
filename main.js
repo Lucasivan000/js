@@ -24,6 +24,9 @@ const nombreUsuario = document.getElementById("nombreApellido");
 const telefonoUsuario = document.getElementById("telefono");
 const errorDeSelecccion = document.getElementById("errorSeleccion");
 
+// historial
+const listaHistorial = document.getElementById("listaActualizacion");
+
 
 nombreUsuario.addEventListener("input", function(){
     let nombrePorValidar = nombreUsuario.value;
@@ -130,9 +133,11 @@ botonA.addEventListener("click", function () {
                 telefono: telefonoUsuario,
                 valorVehiculo: precioAuto,
                 anio: anioModeloAuto,
-                cuota: resultado
+                cuota: resultado,
+                tipo: tipoSeleccionado
             }
             guardarDatos(datos);
+           
 
 
             resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
@@ -182,9 +187,11 @@ botonM.addEventListener("click", function () {
                 telefono: telefonoUsuario,
                 valorVehiculo: precioMoto,
                 anio: anioModeloMoto,
-                cuota: resultado
+                cuota: resultado,
+                tipo: tipoSeleccionado
             }
             guardarDatos(datos);
+            
 
 
             resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
@@ -221,6 +228,7 @@ botonV.addEventListener("click", function () {
 
         }
         guardarDatos(datos);
+        
 
 
         resultadoCalculo.textContent = "Hola " + nombreUsuario + " El valor menusal estimado es de $" + resultado;
@@ -229,7 +237,7 @@ botonV.addEventListener("click", function () {
 
 
 
-// funcion datosusuario ----//
+// funcion datosusuario 
 function guardarDatos(datos) {
     let cotizaciones;
 
@@ -242,6 +250,49 @@ function guardarDatos(datos) {
     cotizaciones.push(datos);
     localStorage.setItem("pidioCotizacion", JSON.stringify(cotizaciones));
 }
+
+//funcion para mostrar la lista
+function mostrarLista() {
+    const listaHistorial = document.getElementById("listaActualizacion");
+    const datosUsuario = localStorage.getItem("pidioCotizacion");
+
+    if(!datosUsuario) {
+        listaHistorial .innerHTML = "No hay cotizaciones vigentes"
+        return;
+    }
+
+    const datosGuardados = JSON.parse(datosUsuario);
+    const ultimasDiez = datosGuardados.slice(-10).reverse();
+
+    listaHistorial.innerHTML = "";
+
+
+    ultimasDiez.forEach(function(cotizacion, i) {
+        listaHistorial.innerHTML +=`
+        <div>
+            <p>${i+1}</p>
+            <p>Nombre:${cotizacion.nombre}</p>
+            <p>Telefono:${cotizacion.telefono}</p>
+            <p>Seguro:${cotizacion.tipo}</p>
+            <p>Valor:${cotizacion.cuota || cotizacion.monto}</p>
+        </div>`
+    })
+
+}
+const botonBorrar = document.getElementById("borrarHistorial");
+
+botonBorrar.addEventListener("click", function () {
+
+    localStorage.removeItem("pidioCotizacion");
+    listaHistorial.innerText = "Historial borrado";
+
+});
+const botonHistorial = document.getElementById("botonVerHistorial");
+
+botonHistorial.addEventListener("click", () => {
+    mostrarLista();
+});
+
 
 
 // Boton de contacto por email

@@ -129,6 +129,29 @@ button:hover {
     text-align: center;
 }
 
+/*agregado de lista*/
+.instrucciones{
+    font-weight: bold;
+    color: #1e3a8a;
+    text-align: center;
+
+}
+
+#listaActualizacion {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #dbeafe;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #1e3a8a;
+    text-align: center;
+}
+.botones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+}
 /*celular*/
 
 @media (max-width: 600px) {
