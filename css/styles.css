@@ -146,12 +146,8 @@ button:hover {
     color: #1e3a8a;
     text-align: center;
 }
-.botones {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-}
+
+
 /*celular*/
 
 @media (max-width: 600px) {

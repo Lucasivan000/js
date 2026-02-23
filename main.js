@@ -297,7 +297,7 @@ botonHistorial.addEventListener("click", () => {
 
 // Boton de contacto por email
 
-botonEmail.addEventListener("click", function () {
+botonDeContacto.addEventListener("click", function () {
     let email = "seguroquenose@seguros.com";
     let asunto = "presupuesto";
     let mensajeEmail = " Hola, quiero informacion";
