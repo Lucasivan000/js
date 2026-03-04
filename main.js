@@ -27,6 +27,12 @@ const errorDeSelecccion = document.getElementById("errorSeleccion");
 // historial
 const listaHistorial = document.getElementById("listaActualizacion");
 
+//leer archivo Json de cuotas
+async function cargarValores() {
+    const valorCuotaJ = await fetch("valores.json");
+    const dato = await valorCuotaJ.json();
+    return dato;
+}
 
 nombreUsuario.addEventListener("input", function(){
     let nombrePorValidar = nombreUsuario.value;
@@ -95,11 +101,13 @@ boton.addEventListener("click", function () {
 });
 
 //automotor BOTON COTIZAR
-botonA.addEventListener("click", function () {
+botonA.addEventListener("click", async function () {
     const tipoSeleccionado = tipoDeSeguro.value;
     if (tipoSeleccionado === "automotor") {
         let precioAuto = Number(valorAuto.value);
         let anioModeloAuto = Number(anioAuto.value);
+        let datoCuota = await cargarValores();
+
         if (precioAuto <= 0 || anioModeloAuto <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
             return;
@@ -108,11 +116,11 @@ botonA.addEventListener("click", function () {
         let mensaje = "";
 
         if (anioModeloAuto >= 2016 && anioModeloAuto <= 2026) {
-            cuota = 0.02;
+            cuota = datoCuota.automotor.nuevo;
         } else if (anioModeloAuto <= 2015 && anioModeloAuto >= 2000) {
-            cuota = 0.04;
+            cuota = datoCuota.automotor.viejo;
         } else {
-            mensaje = "No asegurable por el Año Modelo || Modelo Año Inexistente";
+            mensaje = datoCuota.mensajes.error;
         }
 
         let resultado = null;
@@ -148,11 +156,12 @@ botonA.addEventListener("click", function () {
 });
 
 //moto BOTON COTIZAR
-botonM.addEventListener("click", function () {
+botonM.addEventListener("click",  async function () {
     const tipoSeleccionado = tipoDeSeguro.value;
     if (tipoSeleccionado === "motovehiculo") {
         let precioMoto = Number(valorMoto.value);
         let anioModeloMoto = Number(anioMoto.value);
+        let datoCuota = await cargarValores();
         if (precioMoto <= 0 || anioModeloMoto <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
             return;
@@ -162,12 +171,11 @@ botonM.addEventListener("click", function () {
         let mensaje = "";
 
         if (anioModeloMoto >= 2016 && anioModeloMoto <= 2026) {
-            cuota = 0.03;
+            cuota = datoCuota.motovehiculo.nuevo;
         } else if (anioModeloMoto <= 2015 && anioModeloMoto >= 2006) {
-            cuota = 0.02;
+            cuota = datoCuota.motovehiculo.viejo;
         } else {
-            mensaje = "No asegurable por el Año Modelo || Modelo Año inexistente";
-            return
+            mensaje = datoCuota.mensajes.error;
         }
 
         let resultado = null;
@@ -202,15 +210,16 @@ botonM.addEventListener("click", function () {
 });
 
 // vivienda BOTON COTIZAR
-botonV.addEventListener("click", function () {
+botonV.addEventListener("click", async function () {
     const tipoSeleccionado = tipoDeSeguro.value;
     if (tipoSeleccionado === "vivienda") {
         let cantMetrosViv = Number(metrosViv.value);
+        let datoCuota = await cargarValores();
         if (cantMetrosViv <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
             return;
         }
-        let cuota = 500;
+        let cuota = datoCuota.vivienda.valorMetro;
         let resultado = cantMetrosViv * cuota;
 
         //datos usuario
@@ -281,6 +290,12 @@ function mostrarLista() {
 }
 //ocultar historial
 
+const botonOcultar = document.getElementById("ocultarHistorial");
+
+botonOcultar.addEventListener("click", () => {
+    listaHistorial.style.display = "none";
+});
+
 
 
 
@@ -299,6 +314,7 @@ botonBorrar.addEventListener("click", function () {
 const botonHistorial = document.getElementById("botonVerHistorial");
 
 botonHistorial.addEventListener("click", () => {
+    listaHistorial.style.display = "block";
     mostrarLista();
 });
 
