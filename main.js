@@ -27,12 +27,20 @@ const errorDeSelecccion = document.getElementById("errorSeleccion");
 // historial
 const listaHistorial = document.getElementById("listaActualizacion");
 
-//leer archivo Json de cuotas
+//leer archivo Json de cuotas con  manejo de errores (?)
 async function cargarValores() {
-    const valorCuotaJ = await fetch("valores.json");
-    const dato = await valorCuotaJ.json();
-    return dato;
+    try {
+        const valorCuotaJ = await fetch("valores.json");
+        if(!valorCuotaJ.ok){
+            throw new Error("No se puede cargar archivo");
+        }
+        const dato = await valorCuotaJ.json();
+        return dato;
+    } catch (error) {
+        return null;
+    }
 }
+    
 
 nombreUsuario.addEventListener("input", function(){
     let nombrePorValidar = nombreUsuario.value;
