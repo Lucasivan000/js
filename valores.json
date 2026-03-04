@@ -1,0 +1,17 @@
+{
+  "automotor": {
+    "nuevo": 0.02,
+    "viejo": 0.04
+  },
+  "motovehiculo": {
+    "nuevo": 0.03,
+    "viejo": 0.02
+  },
+  "vivienda": {
+    "valorMetro": 500
+  },
+  "mensajes": {
+    "calculando": "Calculando cotización...",
+    "error": "No se pudo calcular la cotización"
+  }
+}

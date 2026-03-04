@@ -147,6 +147,17 @@ button:hover {
     text-align: center;
 }
 
+.listaCotizaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ocultar */
+.oculto {
+    display: none;
+}
+
 
 /*celular*/
 

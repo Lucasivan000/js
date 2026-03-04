@@ -279,6 +279,13 @@ function mostrarLista() {
     })
 
 }
+//ocultar historial
+
+
+
+
+
+// borrar historial
 const botonBorrar = document.getElementById("borrarHistorial");
 
 botonBorrar.addEventListener("click", function () {
@@ -287,6 +294,8 @@ botonBorrar.addEventListener("click", function () {
     listaHistorial.innerText = "Historial borrado";
 
 });
+
+//ver historial
 const botonHistorial = document.getElementById("botonVerHistorial");
 
 botonHistorial.addEventListener("click", () => {
