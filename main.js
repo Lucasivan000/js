@@ -37,6 +37,17 @@ async function cargarValores() {
         const dato = await valorCuotaJ.json();
         return dato;
     } catch (error) {
+        Toastify({
+
+               text: "Estamos trabajando para solucionar el error",
+               gravity: "top",
+               position: "center",
+               style: {
+                background : "red"
+               }, 
+               duration: 3000
+
+            }).showToast();
         return null;
     }
 }
@@ -115,9 +126,32 @@ botonA.addEventListener("click", async function () {
         let precioAuto = Number(valorAuto.value);
         let anioModeloAuto = Number(anioAuto.value);
         let datoCuota = await cargarValores();
+        if(!datoCuota){
+            Toastify({
+               text:"Error Interno",
+               gravity:"top",
+               position:"center",
+               style:{
+               background:"red"
+            }
+        }).showToast();
+        return;
+        }  
 
         if (precioAuto <= 0 || anioModeloAuto <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
+            Toastify({
+
+               text: "No se puede calcular",
+               gravity: "top",
+               position: "center",
+               style: {
+                background : "red"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
             return;
         }
         let cuota;
@@ -129,6 +163,18 @@ botonA.addEventListener("click", async function () {
             cuota = datoCuota.automotor.viejo;
         } else {
             mensaje = datoCuota.mensajes.error;
+            Toastify({
+
+               text: "No asegurable",
+               gravity: "top",
+               position: "right",
+               style: {
+                background : "red"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
         }
 
         let resultado = null;
@@ -157,6 +203,18 @@ botonA.addEventListener("click", async function () {
 
 
             resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
+            Toastify({
+
+               text: "Calculo Exitoso",
+               gravity: "top",
+               position: "right",
+               style: {
+                background : "blue"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
         } else {
             resultadoCalculo.textContent = mensaje;
         }
@@ -170,8 +228,31 @@ botonM.addEventListener("click",  async function () {
         let precioMoto = Number(valorMoto.value);
         let anioModeloMoto = Number(anioMoto.value);
         let datoCuota = await cargarValores();
+        if(!datoCuota){
+            Toastify({
+               text:"Error Interno",
+               gravity:"top",
+               position:"center",
+               style:{
+               background:"red"
+            }
+        }).showToast();
+        return;
+        }  
         if (precioMoto <= 0 || anioModeloMoto <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
+            Toastify({
+
+               text: "No se puede calcular",
+               gravity: "top",
+               position: "center",
+               style: {
+                background : "red"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
             return;
         }
 
@@ -184,6 +265,18 @@ botonM.addEventListener("click",  async function () {
             cuota = datoCuota.motovehiculo.viejo;
         } else {
             mensaje = datoCuota.mensajes.error;
+            Toastify({
+
+               text: "No asegurable",
+               gravity: "top",
+               position: "right",
+               style: {
+                background : "red"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
         }
 
         let resultado = null;
@@ -211,6 +304,18 @@ botonM.addEventListener("click",  async function () {
 
 
             resultadoCalculo.textContent = "Hola " + nombreUsuario + " el valor mensual estimado es de $" + resultado;
+            Toastify({
+
+               text: "Calculo Exitoso",
+               gravity: "top",
+               position: "right",
+               style: {
+                background : "blue"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
         } else {
             resultadoCalculo.textContent = mensaje;
         }
@@ -223,8 +328,31 @@ botonV.addEventListener("click", async function () {
     if (tipoSeleccionado === "vivienda") {
         let cantMetrosViv = Number(metrosViv.value);
         let datoCuota = await cargarValores();
+        if(!datoCuota){
+            Toastify({
+               text:"Error Interno",
+               gravity:"top",
+               position:"center",
+               style:{
+               background:"red"
+            }
+        }).showToast();
+        return;
+        }  
         if (cantMetrosViv <= 0) {
             resultadoCalculo.textContent = "Completá todos los datos";
+            Toastify({
+
+               text: "Ingresa la cantidad de metros cuadrados",
+               gravity: "top",
+               position: "center",
+               style: {
+                background : "red"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
             return;
         }
         let cuota = datoCuota.vivienda.valorMetro;
@@ -248,7 +376,19 @@ botonV.addEventListener("click", async function () {
         
 
 
-        resultadoCalculo.textContent = "Hola " + nombreUsuario + " El valor menusal estimado es de $" + resultado;
+        resultadoCalculo.textContent = "Hola " + nombreUsuario + " El valor mensual estimado es de $" + resultado;
+        Toastify({
+
+               text: "Calculo Exitoso",
+               gravity: "top",
+               position: "right",
+               style: {
+                background : "blue"
+               }, 
+
+               duration: 3000
+
+            }).showToast();
     }
 });
 
@@ -315,6 +455,13 @@ botonBorrar.addEventListener("click", function () {
 
     localStorage.removeItem("pidioCotizacion");
     listaHistorial.innerText = "Historial borrado";
+    Toastify({
+
+       text: "Historial Eliminado",
+
+       duration: 3000
+
+    }).showToast();
 
 });
 
